@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get OSM oAuth2 access token</title>
+    <meta name="description" content="This tool allows you to obtain the bearer access token needed to perform most openstreetmap api requests authorised by the oAuth2 standard.">
+    <meta name="keywords" content="openstreetmap, osm, token, oauth2, oAuth2, bearer, server side, register, migration">
+    <meta name="author" content="Christopher Kwiatkowski">
+    <script src="https://cdn.jsdelivr.net/npm/osm-auth@2/dist/osm-auth.iife.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
+</head>
+
+<body style="display: flex; justify-content: center; align-items: center;">
+    <nav>
+        <a href="." class="brand">
+            <img class="logo" src="https://interactivemaps.xyz/logo_small.webp" />
+        </a>
+        
+        <div class="menu">
+            <a href="https://tipply.pl/@docent" target="_blank" class="pseudo button">Donate</a>
+            <button class="pseudo button" onclick="about()">About</button>
+        </div>
+    </nav>
+
+    <div class="modal">
+        <input id="messageModal" type="checkbox" />
+        <label for="messageModal" class="overlay"></label>
+        <article>
+            <header>
+                <h3 id="messageModalTitle">[TITLE]</h3>
+                <label for="messageModal" class="close">&times;</label>
+            </header>
+            <p id="messageModalContent">
+                [CONTENT]
+            </p>
+            <footer>
+                <label for="messageModal" class="button dangerous">Close</label>
+            </footer>
+        </article>
+    </div>
+
+    <div id="tabsContainer" class="flex two center">
+        <div class="tabs three" style="text-align: center;">
+            <input id="tab1" type="radio" name="tabs" checked="">
+            <input id="tab2" type="radio" name="tabs">
+            <input id="tab3" type="radio" name="tabs">
+            <div class="row">
+                <div>
+                    <div class="card" style="margin: 0 20px;">
+                        <header>
+                            <h3>Select a server</h3>
+                        </header>
+                        <section>
+                            <label data-tooltip="openstreetmap.org" class="tooltip-right">
+                                <input type='radio' checked type='radio' name="serverRadio" id="production">
+                                <span class="checkable">Production</span>
+                            </label>
+                            <br />
+                            <label data-tooltip="master.apis.dev.openstreetmap.org" class="tooltip-right">
+                                <input type='radio' name="serverRadio" id="development">
+                                <span class="checkable">Development</span>
+                            </label>
+                        </section>
+                        <footer><label class="button" for="tab2">Next</label>
+
+                        </footer>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card" style="margin: 0 20px;">
+                        <header>
+                            <h3>Register your oAuth2 application</h3>
+                        </header>
+                        <ol>
+                            <li>Go to <a id="oauth2url" href="https://openstreetmap.org/oauth2/applications"
+                                    target="_blank">oAuth 2 applications settings</a>.</li>
+                            <li>Click 'Register new application' button.</li>
+                            <li>Enter a name for your application.</li>
+                            <li>Add <code id="redirectUri">[URL HERE]</code> to Redirect URIs. You can remove it later.
+                            </li>
+                            <li><strong>Uncheck</strong> 'Confidential application'.</li>
+                            <li>Choose permissions (scopes) that you may want to use in your app.</li>
+                            <li>Click 'register' button.</li>
+                        </ol>
+                        <footer>
+                            <label class="button" for="tab3">Next</label>
+                            <label class="button dangerous" for="tab1">Back</label>
+                        </footer>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="card" style="margin: 0 20px;">
+                        <header>
+                            <h3>Authorize yourself</h3>
+                        </header>
+                        <p>Copy & Paste the client ID and choose for which scopes you want the token for.</p>
+                        <section><input type="text" placeholder="Client ID" id="clientId"></section>
+                        <section id="scopes">
+                            <label>
+                                <input type='checkbox' id="read_prefs">
+                                <span class="checkable">read_prefs</span>
+                            </label>
+                            <br />
+                            <label>
+                                <input type='checkbox' id="write_prefs">
+                                <span class="checkable">write_prefs</span>
+                            </label>
+                            <br />
+                            <label>
+                                <input type='checkbox' id="write_diary">
+                                <span class="checkable">write_diary</span>
+                            </label>
+                            <br />
+                            <label>
+                                <input type='checkbox' id="write_api">
+                                <span class="checkable">write_api</span>
+                            </label>
+                            <br />
+                            <label>
+                                <input type='checkbox' id="read_gpx">
+                                <span class="checkable">read_gpx</span>
+                            </label>
+                            <br />
+                            <label>
+                                <input type='checkbox' id="write_gpx">
+                                <span class="checkable">write_gpx</span>
+                            </label>
+                            <br />
+                            <label>
+                                <input type='checkbox' id="write_notes">
+                                <span class="checkable">write_notes</span>
+                            </label>
+                            <br />
+                            <label>
+                                <input type='checkbox' id="write_redactions">
+                                <span class="checkable">write_redactions</span>
+                            </label>
+                            <br />
+                            <label>
+                                <input type='checkbox' id="openid">
+                                <span class="checkable">openid</span>
+                            </label>
+                        </section>
+                        <footer>
+                            <button class="success" onclick="getToken()">Get token</button>
+                            <label class="button dangerous" for="tab2">Back</label>
+                        </footer>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+
+</html>
