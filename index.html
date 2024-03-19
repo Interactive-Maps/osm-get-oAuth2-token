@@ -21,11 +21,15 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
 </head>
 
-<body style="display: flex; justify-content: center; align-items: center;">
+<body style="display: flex; justify-content: center; align-items: center; overflow: hidden;">
     <nav>
         <a href="." class="brand">
             <img class="logo" src="https://interactivemaps.xyz/logo_small.webp" />
         </a>
+
+         <!-- responsive-->
+        <input id="bmenub" type="checkbox" class="show">
+        <label for="bmenub" class="burger pseudo button">&#8801;</label>
         
         <div class="menu">
             <a href="https://tipply.pl/@docent" target="_blank" class="pseudo button">Donate</a>
@@ -37,12 +41,12 @@
     <div class="modal">
         <input id="messageModal" type="checkbox" />
         <label for="messageModal" class="overlay"></label>
-        <article>
+        <article style="overflow: auto; max-width: 100vw;">
             <header>
                 <h3 id="messageModalTitle">[TITLE]</h3>
                 <label for="messageModal" class="close">&times;</label>
             </header>
-            <p id="messageModalContent">
+            <p id="messageModalContent" style="overflow: auto; max-width: 100vw; white-space: nowrap;">
                 [CONTENT]
             </p>
             <footer>
@@ -51,14 +55,14 @@
         </article>
     </div>
 
-    <div id="tabsContainer" class="flex two center">
-        <div class="tabs three" style="text-align: center;">
+    <div id="tabsContainer" class="flex two center" style="overflow: auto;">
+        <div class="tabs three">
             <input id="tab1" type="radio" name="tabs" checked="">
             <input id="tab2" type="radio" name="tabs">
             <input id="tab3" type="radio" name="tabs">
-            <div class="row">
+            <div class="row" style="display: flex; align-items: center;">
                 <div>
-                    <div class="card" style="margin: 0 20px;">
+                    <div class="card" style="margin: 0 20px; overflow: auto; max-height: 100vh; max-width: 100vw;">
                         <header>
                             <h3>Select a server</h3>
                         </header>
@@ -80,7 +84,7 @@
                 </div>
 
                 <div>
-                    <div class="card" style="margin: 0 20px;">
+                    <div class="card" style="margin: 0 20px; overflow: auto; max-height: 100vh; max-width: 100vw;">
                         <header>
                             <h3>Register your OAuth 2 application</h3>
                         </header>
@@ -103,7 +107,7 @@
                 </div>
 
                 <div>
-                    <div class="card" style="margin: 0 20px;">
+                    <div class="card" style="margin: 0 20px; overflow: auto; max-height: 100vh; max-width: 100vw;">
                         <header>
                             <h3>Authorize yourself</h3>
                         </header>

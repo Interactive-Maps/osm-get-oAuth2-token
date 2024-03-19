@@ -103,7 +103,7 @@ function main() {
 }
 
 function resize() {
-  if (window.innerWidth < 900) {
+  if (window.innerWidth < 960) {
     tabsContainer.classList.remove("two");
   } else {
     tabsContainer.classList.add("two");
