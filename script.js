@@ -114,7 +114,7 @@ function about() {
   messageModalTitle.innerText = "About"
     messageModalContent.innerHTML = `This tool allows you to obtain the bearer access token needed to perform most 
     <a href="https://openstreetmap.org" target="_blank">openstreetmap</a> api requests authorised by the
-    <a href="https://oauth.net/2/" target="_blank">oAuth2</a> standard.
+    <a href="https://oauth.net/2/" target="_blank">OAuth 2.0</a> standard.
     <br /> <br />
     All your data is stored only in your browser. The access token is deleted from memory after being displayed. During authentication, you connect directly to the OpenStreetMap servers. 
     <br /> <br />
